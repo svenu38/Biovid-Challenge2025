@@ -72,3 +72,11 @@ def create_3fold_user_split(root_dir):
         folds.append((train_videos, val_videos))
 
     return folds, user_to_label
+
+
+
+# This file is responsible for converting each preprocessed BIOVID video into a structured training sample 
+# containing visual frames, audio paths, authenticity labels, and user identity labels.
+#  It ensures correct pairing of audio–video inputs and provides the necessary metadata for both binary classification and metric learning (triplet loss).
+#  It also performs user-level 3-fold cross-validation to prevent identity leakage. 
+# The dataset’s output feeds directly into the visual encoder, audio encoder, GMU fusion network, and loss functions during model training and evaluation.
