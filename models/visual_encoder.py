@@ -75,3 +75,8 @@ class VisualEncoder(nn.Module):
         return self.fc(h)  # [B, embedding_dim]
 
 
+# The VisualEncoder takes a batch of lip-motion video clips ([B, 3, 30, 96, 96]), 
+# uses a pretrained 3D ResNet to extract spatiotemporal features, pools them over space
+# feeds the resulting time sequence into a bidirectional GRU to model motion dynamics,
+#  and finally compresses everything into a 256-dimensional visual embedding per video ([B, 256]), 
+# which is then used for multimodal fusion and open-set verification.
