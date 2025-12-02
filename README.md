@@ -37,6 +37,19 @@ A **Gated Multimodal Unit (GMU)** fuses both streams into a 256-D embedding used
 The overall architecture of the proposed dual-stream audio–visual authentication system is shown below:
 
 ![Architecture](architecture.jpg)
+
+
+## Dataset
+The BIOVID dataset is restricted and cannot be shared publicly.
+
+To access it:
+
+- **Register for the BIOVID Challenge 2025
+
+- **Submit your method description
+
+- **Receive download approval from the organizers
+
 ---
 ## 📂 Project Structure
 
