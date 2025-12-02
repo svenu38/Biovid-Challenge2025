@@ -44,11 +44,11 @@ The BIOVID dataset is restricted and cannot be shared publicly.
 
 To access it:
 
-- **Register for the BIOVID Challenge 2025
+- Register for the BIOVID Challenge 2025
 
-- **Submit your method description
+- Submit your method description
 
-- **Receive download approval from the organizers
+- Receive download approval from the organizers
 
 ---
 ## 📂 Project Structure
