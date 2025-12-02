@@ -1,41 +1,44 @@
 # Multimodal Biometric Authentication Using Lip Motion and Spoken Passphrases  
-### BIOVID Challenge 2025 – Dual-Factor Lip-Based Authentication  
-**Author:** Venu Siddapura Govindaraju  
-**Affiliation:** University of Naples Federico II, DIETI
+### BIOVID Challenge 2025 – Dual-Factor Audio–Visual Authentication  
 
-This repository contains the official implementation of our system submitted to the **BIOVID Challenge 2025**, titled:
+**Authors:**  
+- **Venu Siddapura Govindaraju** – University of Naples Federico II, DIETI  
+- **Stefano Marrone** – University of Naples Federico II, DIETI  
+- **Carlo Sansone** – University of Naples Federico II, DIETI  
 
-**“Multimodal Biometric Authentication Using Lip Motion and Spoken Passphrases.”**
+This repository contains the official implementation of our method submitted to the **BIOVID Challenge 2025**, titled:
 
-The method performs **open-set user authentication** using synchronized audio–visual MP4 videos. Each sample contains:
+> **“Multimodal Biometric Authentication Using Lip Motion and Spoken Passphrases.”**  
+> (Accepted in ICIAP 2025 Workshop – BIOVID Challenge, LNCS Volume)
 
-- **Lip-motion frames** (visual modality)  
-- **Speech audio** (audio modality)  
+The system performs **open-set biometric authentication** using synchronized audio–visual MP4 videos. Each authentication sample includes:
 
-The system extracts complementary biometric cues from both modalities using a *dual-stream encoder architecture* and fuses them using a **Gated Multimodal Unit (GMU)** to generate a discriminative 256-D joint embedding for both **classification** and **identity verification**.
+- **Lip-motion RGB frames**  
+- **Spoken passphrase audio**
 
----
-
-# 🔥 Key Contributions
-
-- Dual-stream biometric system combining **3D-ResNet-18 + BiGRU** (visual) and **ECAPA-TDNN** (audio).  
-- **Gated Multimodal Unit (GMU)** for adaptive audio–visual fusion.  
-- Composite training loss using **Triplet Loss (semi-hard mining)** + **Binary Cross Entropy**.  
-- **Open-set decision mechanism** using cosine similarity + threshold rejection.  
-- Fully reproducible pipeline with preprocessing, training, inference, and submission generation.
+We design a **dual-stream deep learning architecture** using a 3D-ResNet18 + BiGRU visual encoder and an ECAPA-TDNN audio encoder. These embeddings are fused using a **Gated Multimodal Unit (GMU)** to produce a 256-dimensional joint embedding for both **classification** and **identity verification**.
 
 ---
 
-# 🧠 System Architecture
+## 🔥 Key Contributions
 
-Below is the full architecture corresponding exactly to the design in the paper.
+- **Dual-stream architecture:**  
+  - 3D-ResNet-18 + BiGRU (visual)  
+  - ECAPA-TDNN (audio)  
+- **Gated Multimodal Unit (GMU)** for adaptive, learned fusion  
+- **Hybrid loss function** using Triplet Loss + Binary Cross Entropy  
+- **Open-set verification** using cosine similarity + thresholding  
+- Reproducible training, evaluation, and submission-generation pipeline  
 
-📌 Place your architecture image inside the repo as:  
-`architecture.jpg`
+---
 
-Then reference it in README (as shown below):
+## 🧠 System Architecture
 
+Include your architecture figure here:
+
+```markdown
 ![Architecture](architecture.jpg)
+
 
 ---
 
@@ -83,3 +86,49 @@ Biovid-Challenge2025/
 ├── evaluate_eer.py
 ├── requirements.txt
 └── README.md
+
+
+## 🔧 Preprocessing
+
+Each MP4 sample is processed into:
+
+- **30 RGB frames** (96×96)  
+- **16 kHz mono audio waveform**  
+
+Run preprocessing:
+
+```bash
+python scripts/preprocessing/preprocess.py \
+    --input data/raw \
+    --output data/processed
+
+
+## Dataset (BIOVID Challenge 2025)
+
+The BIOVID dataset is restricted and cannot be shared publicly.
+
+To access it:
+
+        Register for the BIOVID Challenge 2025
+
+        Submit your method description
+
+        Receive download approval from organizers
+
+## Results
+3-Fold Cross-Validation (Validation Set)
+| Fold        | Accuracy   | EER        | APCER      | BPCER      |
+| ----------- | ---------- | ---------- | ---------- | ---------- |
+| 0           | 72.48%     | 27.53%     | 27.47%     | 27.58%     |
+| 1           | 68.46%     | 31.57%     | 31.39%     | 31.75%     |
+| 2           | 73.15%     | 26.74%     | 27.17%     | 26.31%     |
+| **Average** | **71.36%** | **28.61%** | **28.68%** | **28.55%** |
+
+
+##BIOVID Hidden Test Set
+
+        71.00% accuracy
+
+        33 accepted predictions
+
+        92 rejected as “unknown”
