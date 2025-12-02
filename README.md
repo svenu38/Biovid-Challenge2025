@@ -9,32 +9,32 @@
 This repository contains the official implementation of our method submitted to the **BIOVID Challenge 2025**, titled:
 
 > **“Multimodal Biometric Authentication Using Lip Motion and Spoken Passphrases.”**  
-> (Accepted in ICIAP 2025 Workshop – BIOVID Challenge, LNCS Volume)
+> Accepted in *ICIAP 2025 Workshop – BIOVID Challenge (LNCS Volume)*
 
-The system performs **open-set biometric authentication** using synchronized audio–visual MP4 videos. Each authentication sample includes:
+Our system performs **open-set biometric authentication** using synchronized audio–visual MP4 videos. Each sample includes:
 
 - **Lip-motion RGB frames**  
 - **Spoken passphrase audio**
 
-We design a **dual-stream deep learning architecture** using a 3D-ResNet18 + BiGRU visual encoder and an ECAPA-TDNN audio encoder. These embeddings are fused using a **Gated Multimodal Unit (GMU)** to produce a 256-dimensional joint embedding for both **classification** and **identity verification**.
+We use a **dual-stream architecture**:  
+3D-ResNet18 + BiGRU for visual encoding, and ECAPA-TDNN for audio encoding.  
+A **Gated Multimodal Unit (GMU)** fuses both streams into a 256-D embedding used for classification and identity verification.
 
 ---
 
 ## 🔥 Key Contributions
 
-- **Dual-stream architecture:**  
-  - 3D-ResNet-18 + BiGRU (visual)  
-  - ECAPA-TDNN (audio)  
-- **Gated Multimodal Unit (GMU)** for adaptive, learned fusion  
-- **Hybrid loss function** using Triplet Loss + Binary Cross Entropy  
-- **Open-set verification** using cosine similarity + thresholding  
-- Reproducible training, evaluation, and submission-generation pipeline  
+- **Dual-stream audio–visual architecture**
+- **GMU-based adaptive fusion**
+- **Hybrid Triplet + BCE loss**
+- **Open-set decision using cosine similarity + threshold**
+- **Full pipeline: preprocessing → training → inference → submission**
 
 ---
 
 ## 🧠 System Architecture
 
-Include your architecture figure here:
+Add your architecture image here:
 
 ```markdown
 ![Architecture](architecture.jpg)
@@ -42,28 +42,28 @@ Include your architecture figure here:
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 Biovid-Challenge2025/
-├── data/                     # EXCLUDED – confidential BIOVID dataset
+├── data/                     # EXCLUDED – BIOVID dataset not included
 │
 ├── datasets/
-│   └── biovid_dataset.py     # Video/audio reader + preprocessing
+│   └── biovid_dataset.py     # Data loader + preprocessing
 │
 ├── models/
-│   ├── audio_encoder.py      # ECAPA-TDNN backbone
+│   ├── audio_encoder.py      # ECAPA-TDNN
 │   ├── visual_encoder.py     # 3D-ResNet18 + BiGRU
 │   ├── gmu_fusion.py         # Gated Multimodal Unit
 │   ├── fusion_head.py
 │   └── output_head.py
 │
 ├── samplers/
-│   └── triplet_sampler.py
+│   └── triplet_sampler.py     # Semi-hard triplet mining
 │
 ├── scripts/
 │   ├── preprocessing/
-│   │   └── preprocess.py     # Frame extraction, audio extraction
+│   │   └── preprocess.py      # Frame extraction & audio extraction
 │   ├── inference/
 │   └── utils/
 │
@@ -87,7 +87,7 @@ Biovid-Challenge2025/
 ├── requirements.txt
 └── README.md
 
-
+---
 ## 🔧 Preprocessing
 
 Each MP4 sample is processed into:
