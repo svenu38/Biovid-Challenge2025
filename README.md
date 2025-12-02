@@ -34,101 +34,44 @@ A **Gated Multimodal Unit (GMU)** fuses both streams into a 256-D embedding used
 
 ## 🧠 System Architecture
 
-Add your architecture image here:
+The overall architecture of the proposed dual-stream audio–visual authentication system is shown below:
 
-```markdown
 ![Architecture](architecture.jpg)
-
-
 ---
-
 ## 📂 Project Structure
 
 ```text
 Biovid-Challenge2025/
 ├── data/                     # EXCLUDED – BIOVID dataset not included
-│
 ├── datasets/
 │   └── biovid_dataset.py     # Data loader + preprocessing
-│
 ├── models/
 │   ├── audio_encoder.py      # ECAPA-TDNN
 │   ├── visual_encoder.py     # 3D-ResNet18 + BiGRU
 │   ├── gmu_fusion.py         # Gated Multimodal Unit
 │   ├── fusion_head.py
 │   └── output_head.py
-│
 ├── samplers/
-│   └── triplet_sampler.py     # Semi-hard triplet mining
-│
+│   └── triplet_sampler.py    # Semi-hard triplet mining
 ├── scripts/
 │   ├── preprocessing/
-│   │   └── preprocess.py      # Frame extraction & audio extraction
+│   │   └── preprocess.py     # Frame extraction & audio extraction
 │   ├── inference/
 │   └── utils/
-│
 ├── notebooks/
 │   ├── updated_pipeline.ipynb
 │   └── 02_model_visual.ipynb
-│
 ├── results/
 │   ├── fold0_best_model.pt
 │   ├── fold1_best_model.pt
 │   ├── fold2_best_model.pt
 │   └── gmu_fusion/
 │       └── fold0_best_model.pt
-│
 ├── submission/
 │   └── submission.json
-│
 ├── train_crossval.py
 ├── test_inference_vote.py
 ├── evaluate_eer.py
 ├── requirements.txt
 └── README.md
 
----
-## 🔧 Preprocessing
-
-Each MP4 sample is processed into:
-
-- **30 RGB frames** (96×96)  
-- **16 kHz mono audio waveform**  
-
-Run preprocessing:
-
-```bash
-python scripts/preprocessing/preprocess.py \
-    --input data/raw \
-    --output data/processed
-
-
-## Dataset (BIOVID Challenge 2025)
-
-The BIOVID dataset is restricted and cannot be shared publicly.
-
-To access it:
-
-        Register for the BIOVID Challenge 2025
-
-        Submit your method description
-
-        Receive download approval from organizers
-
-## Results
-3-Fold Cross-Validation (Validation Set)
-| Fold        | Accuracy   | EER        | APCER      | BPCER      |
-| ----------- | ---------- | ---------- | ---------- | ---------- |
-| 0           | 72.48%     | 27.53%     | 27.47%     | 27.58%     |
-| 1           | 68.46%     | 31.57%     | 31.39%     | 31.75%     |
-| 2           | 73.15%     | 26.74%     | 27.17%     | 26.31%     |
-| **Average** | **71.36%** | **28.61%** | **28.68%** | **28.55%** |
-
-
-##BIOVID Hidden Test Set
-
-        71.00% accuracy
-
-        33 accepted predictions
-
-        92 rejected as “unknown”
