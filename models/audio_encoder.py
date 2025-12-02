@@ -21,3 +21,5 @@ class AudioEncoder(torch.nn.Module):
             signal = transform(signal)
         embedding = self.model.encode_batch(signal.to(self.device))
         return embedding.squeeze(0)  # shape: [192]
+
+
